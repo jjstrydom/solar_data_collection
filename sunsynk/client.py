@@ -1,10 +1,5 @@
 import aiohttp
 
-from sunsynk.battery import Battery
-from sunsynk.grid import Grid
-from sunsynk.input import Input
-from sunsynk.inverter import Inverter
-from sunsynk.output import Output
 from sunsynk.plant import Plant
 from sunsynk.day_graph import DayGraph
 
@@ -44,13 +39,6 @@ class SunsynkClient:
         body = await resp.json()
         plants = body['data']['infos']
         return [Plant(data) for data in plants]
-
-    async def get_inverters(self):
-        resp = await self.__get('api/v1/inverters?page=1&limit=10&total=0&status=-1&sn=&plantId=&type=-2&softVer=&' \
-                   'hmiVer=&agentCompanyId=-1&gsn=')
-        body = await resp.json()
-        inverters = body['data']['infos']
-        return [Inverter(data) for data in inverters]
     
     async def get_historic_graph_data(self, plant_id, date):
         api_str = f'api/v1/plant/energy/{plant_id}/day?lan=en&date={date}&id={plant_id}'
@@ -59,26 +47,6 @@ class SunsynkClient:
         body = await resp.json()
         graphs = body['data']['infos']
         return DayGraph(graphs, date)
-
-    async def get_inverter_realtime_input(self, inverter_sn):
-        resp = await self.__get(f'api/v1/inverter/{inverter_sn}/realtime/input')
-        body = await resp.json()
-        return Input(body['data'])
-
-    async def get_inverter_realtime_output(self, inverter_sn):
-        resp = await self.__get(f'api/v1/inverter/{inverter_sn}/realtime/output')
-        body = await resp.json()
-        return Output(body['data'])
-
-    async def get_inverter_realtime_grid(self, inverter_sn):
-        resp = await self.__get(f'api/v1/inverter/grid/{inverter_sn}/realtime?sn={inverter_sn}')
-        body = await resp.json()
-        return Grid(body['data'])
-
-    async def get_inverter_realtime_battery(self, inverter_sn):
-        resp = await self.__get(f'api/v1/inverter/battery/{inverter_sn}/realtime?sn={inverter_sn}&lan')
-        body = await resp.json()
-        return Battery(body['data'])
 
     async def __get(self, path, attempts=1):
         resp = await self.session.get(self.__url(path), headers=self.__headers(), timeout=20)
