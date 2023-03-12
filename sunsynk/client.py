@@ -6,6 +6,7 @@ from sunsynk.input import Input
 from sunsynk.inverter import Inverter
 from sunsynk.output import Output
 from sunsynk.plant import Plant
+from sunsynk.day_graph import DayGraph
 
 
 class InvalidCredentialsException(Exception):
@@ -50,6 +51,14 @@ class SunsynkClient:
         body = await resp.json()
         inverters = body['data']['infos']
         return [Inverter(data) for data in inverters]
+    
+    async def get_historic_graph_data(self, plant_id, date):
+        api_str = f'api/v1/plant/energy/{plant_id}/day?lan=en&date={date}&id={plant_id}'
+        print(api_str)
+        resp = await self.__get(api_str)
+        body = await resp.json()
+        graphs = body['data']['infos']
+        return DayGraph(graphs, date)
 
     async def get_inverter_realtime_input(self, inverter_sn):
         resp = await self.__get(f'api/v1/inverter/{inverter_sn}/realtime/input')
