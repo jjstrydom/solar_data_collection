@@ -1,0 +1,3 @@
+[submodule "sunsynk-api-client"]
+	path = sunsynk-api-client
+	url = git@github.com:jamesridgway/sunsynk-api-client.git
