@@ -18,7 +18,7 @@ class  WeatherClient:
         await self.session.close()
     
     async def get_data(self,from_date,to_date,lat=-25.89,lon=28.22):
-        resp = await self.__get(f'v1/forecast?latitude={lat}&longitude={lon}&hourly=temperature_2m,precipitation,cloudcover,cloudcover_low,cloudcover_mid,cloudcover_high,windspeed_10m,soil_temperature_0cm&start_date={from_date}&end_date={to_date}&timezone=Africa%2FCairo')
+        resp = await self.__get(f'v1/forecast?latitude={lat}&longitude={lon}&hourly=temperature_2m,relativehumidity_2m,precipitation_probability,precipitation,surface_pressure,cloudcover,cloudcover_low,cloudcover_mid,cloudcover_high,windspeed_10m,winddirection_10m,soil_temperature_0cm&start_date={from_date}&end_date={to_date}&timezone=Africa%2FCairo')
         body = await resp.json()
         data = body['hourly']
         return Weather(data)
