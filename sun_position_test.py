@@ -1,5 +1,4 @@
 from datetime import datetime
-# from suncalc import get_position, get_times
 from sun.position import SunAtLatLon
 
 

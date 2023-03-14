@@ -32,4 +32,4 @@ class SunAtLatLon():
         azimuth = az if HRA <0 else 360 - az
         elevation = alpha
 
-        return (azimuth, elevation)
+        return {'azimuth':azimuth, 'elevation':elevation}
