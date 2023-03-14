@@ -10,6 +10,6 @@ class Weather:
 
     def __create_get_function(self,item):
         def get_something():
-            return(self.data[['time',item]].to_dict())
+            return(self.data[['time',item]].to_dict(orient='list'))
         setattr(self, f'get_{item}', get_something)
         return None
