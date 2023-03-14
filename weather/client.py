@@ -1,5 +1,4 @@
 import aiohttp
-
 from weather.weather import Weather
 
 class  WeatherClient:
@@ -7,6 +6,9 @@ class  WeatherClient:
     def __init__(self, base_url=None):
         self.base_url = 'https://api.open-meteo.com' if base_url is None else base_url
         self.session = aiohttp.ClientSession()
+        self.headers = {
+            "Content-Type": "application/json"
+        }
 
     async def __aenter__(self):
         return self
@@ -23,21 +25,10 @@ class  WeatherClient:
         data = body['hourly']
         return Weather(data)
 
-    async def __get(self, path, attempts=1):
-        print(self.__url(path))
-        resp = await self.session.get(self.__url(path), headers=self.__headers(), timeout=20)
-        if resp.status == 401 and attempts == 1:
-            await self.login()
-            return await self.__get(path, attempts=attempts+1)
+    async def __get(self, path):
+        resp = await self.session.get(self.__url(path), headers=self.headers, timeout=20)
         return resp
 
-    def __headers(self):
-        headers = {
-            "Content-Type": "application/json"
-        }
-        # if self.access_token:
-        #     headers['Authorization'] = f"Bearer {self.access_token}"
-        return headers
     
     def __url(self, path):
         return f'{self.base_url}/{path}'
