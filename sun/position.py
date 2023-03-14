@@ -24,7 +24,7 @@ class SunAtLatLon():
     def at_datetime(self, when: datetime):
         # code implement from 
         # https://www.pveducation.org/pvcdrom/properties-of-sunlight/elevation-angle
-        # print(when, when.tzinfo, when.tzinfo.utcoffset(when))
+
         when, tzinfo = self.__localize_tz(when)
         tz = pytz.timezone(tzinfo)
         tz_offset_hours = when.utcoffset().seconds/60/60

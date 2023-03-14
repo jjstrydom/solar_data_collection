@@ -6,13 +6,6 @@ def main():
     date = datetime(2023,1,1,12,00)
     print(date.tzinfo)
 
-    # tz = pytz.timezone('Africa/Johannesburg')
-    # date = tz.localize(date)
-
-    # print(date.tzinfo, date.tzinfo.utcoffset(date))
-
-    # print(date.utcoffset().seconds/60/60)
-
     lat, lon = 40, -20
 
     sun_angles = SunAtLatLon(lat, lon)
