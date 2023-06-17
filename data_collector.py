@@ -66,6 +66,10 @@ async def main(collection_date:date, sunsynk_username:str, sunsynk_password:str)
     print('Done!')
 
 if __name__ == "__main__":
+    try:
+        os.mkdir('data')
+    except FileExistsError:
+        print('data direcory exists, no need to create')
     sunsynk_username = os.getenv('SUNSYNK_USERNAME')
     sunsynk_password = os.getenv('SUNSYNK_PASSWORD')
     # dates_to_download = get_dates_to_download(starting_from=date(2022,9,21))
