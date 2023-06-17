@@ -8,7 +8,7 @@ class DayGraph(Resource):
             graph_label = graph['label'].lower()
             df = pd.DataFrame(graph['records'])[['time', 'value']]
             df['time'] = str(date) + ' ' + df['time'].astype(str)
-            pd.to_datetime(df['time'])
+            df['time'] = pd.to_datetime(df['time'])
             if graph_label == 'pv':
                 self.solar_production = df
             elif graph_label == 'battery':
