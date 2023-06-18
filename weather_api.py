@@ -8,7 +8,7 @@ async def main():
     async with WeatherClient() as client:
         weather = await client.get_data(date(2023,3,11),date(2023,3,13))
     
-    get_temperature_2m = weather.get_temperature_2m()
+    temperature_2m = weather.get_temperature_2m()
     relativehumidity_2m = weather.get_relativehumidity_2m()
     precipitation_probability = weather.get_precipitation_probability()
     precipitation = weather.get_precipitation()
