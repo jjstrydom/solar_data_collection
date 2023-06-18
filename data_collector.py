@@ -72,7 +72,7 @@ if __name__ == "__main__":
         print('data direcory exists, no need to create')
     sunsynk_username = os.getenv('SUNSYNK_USERNAME')
     sunsynk_password = os.getenv('SUNSYNK_PASSWORD')
-    # dates_to_download = get_dates_to_download(starting_from=date(2022,9,21))
-    dates_to_download = get_dates_to_download(starting_from=date(2023,6,10))
+    dates_to_download = get_dates_to_download(starting_from=date(2022,9,21))
+    # dates_to_download = get_dates_to_download(starting_from=date(2023,6,10))
     for date_to_download in dates_to_download:
         asyncio.run(main(date_to_download, sunsynk_username, sunsynk_password))
