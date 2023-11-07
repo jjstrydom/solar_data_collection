@@ -111,7 +111,7 @@ async def main_weather(collection_date:date, suffix:str):
 
 if __name__ == "__main__":
     starting_date = date(2022,9,21)
-    # starting_date = date(2023,6,12)
+    # starting_date = date(2023,9,12)
     solar_suffix = 'solar'
     weather_suffix = 'weather'
     try:
