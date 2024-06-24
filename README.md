@@ -15,8 +15,10 @@ API call urls can be found with the web developer network inspection tools on th
 `Install certificates.command`
 
 # Github actions
-- Github action action.yaml triggers once a week 
-- Action is on the main (default) branch of the repo 
-    - must be on branch main to be picked-up by github or modified
-- The action runs on the data branch 
-    - make modifications here to non action items for the data run
+- Github action `action.yaml` triggers once a week 
+- Action configuration is on the `main` (default) branch of the repo 
+    - must be on branch `main` to be picked-up by github or modified
+- The action executes on the `data` branch 
+    - make modifications here to non action items for the data collection run
+        - changes to action must reflect on `main` branch
+        - changes to program must reflect on `data` branch
