@@ -1,0 +1,22 @@
+{
+    "battery": {
+        "battery_time": {},
+        "battery_value": {}
+    },
+    "consumption": {
+        "consumption_time": {},
+        "consumption_value": {}
+    },
+    "grid_usage": {
+        "grid_usage_time": {},
+        "grid_usage_value": {}
+    },
+    "solar_production": {
+        "solar_production_time": {},
+        "solar_production_value": {}
+    },
+    "state_of_charge": {
+        "state_of_charge_time": {},
+        "state_of_charge_value": {}
+    }
+}
